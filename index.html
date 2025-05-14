@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en"><head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="images/pumplogo.png">
+  <title>RETARD LICENCE</title>
+
+  <style>
+    @font-face {
+    font-family: 'KrabbyPatty';
+    src: url('fonts/krabbypatty.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  body{
+    font-family: 'KrabbyPatty', sans-serif;
+  }
+  button{
+    font-family: 'KrabbyPatty', sans-serif;
+  }
+  </style>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+   
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      background-image: url('images/bg.jpg');
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 100%;
+      margin-bottom: 120vh;
+    }
+    .canvas-wrapper {
+      position: relative;
+    width: 639px;
+    height: 396px;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .controls {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .file-upload {
+      padding: 12px 20px;
+      background-color: #1f85e4;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: center;
+      transition: background-color 0.3s;
+      height: fit-content;
+    margin: auto;
+    }
+    .file-upload:hover {
+      background-color: #e67e22;
+    }
+    #downloadBtn, #clearDrawingBtn, #shareBtn {
+      padding: 12px 20px;
+      background-color: #621a02;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    #downloadBtn:hover, #clearDrawingBtn:hover, #shareBtn:hover {
+      background-color: #2980b9;
+    }
+    #shareBtn {
+      background-color: #000000;
+    }
+    #shareBtn:hover {
+      background-color: #1abc9c;
+    }
+    .instructions {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #2c3e50;
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+      font-size: 30px;
+    }
+
+
+    #intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    background-color: #FF0000;
+    color: #FFF;
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #FF8000;
+}
+
+#loading-screen {
+    display: none;
+    font-size: 24px;
+    color: #fff;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+#main-content {
+    display: none;
+
+}
+
+.contact ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+}
+
+.contact svg{
+  width: 32px;
+}
+
+.contact{
+  position: absolute;
+    right: 16px;
+}
+
+.contact div{
+  font-size: 32px;
+  
+    color: #2c3e50;
+}
+
+
+  </style>
+</head>
+<body>
+
+
+<div id="intro-screen">
+        <h1>Are you retarded?</h1>
+
+        <div class="btns d-flex">
+        <button id="yes-button">yes</button>
+        <button id="of-course-button">af</button>
+        </div>
+    </div>
+
+    <div id="loading-screen" class="hidden">
+        <p>Retarding...</p>
+    </div>
+
+    <div id="main-content" class="hidden">
+      
+<div class="contact">
+  <ul>
+    <li style="margin-right: 14px;">
+      <a href="#" style="text-decoration: none;" target="_blank">
+        <div>
+          $RTRDLICNC
+        </div>
+        
+      </a>
+    </li>
+    <li>
+      <a href="https://x.com/RetardLicence" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"></path></svg>
+      </a>
+    </li>
+  </ul>
+</div>
+    <div class="container">
+    <h1>Get your own Retard Licence</h1>
+    <div class="canvas-wrapper">
+      <canvas id="bgCanvas" width="639" height="396"></canvas>
+      <canvas id="drawCanvas" width="639" height="396"></canvas>
+    </div>
+    <div class="controls">
+      <label for="photoUpload" class="file-upload">Add Photo</label>
+      <input type="file" id="photoUpload" accept="image/*" style="display:none;">
+      <button id="downloadBtn">Download Card</button>
+      <button id="clearDrawingBtn">Clear Drawing</button>
+      <button id="shareBtn">Share on X.com</button>
+    </div>
+    <div class="instructions">
+      <p>1. Add a photo it will appear on the left side of the card.</p>
+      <p>2. Optionally, draw something on the card.</p>
+      <p>3. Download your finished card or share it on X.com.</p>
+    </div>
+  </div>
+
+    </div>
+
+  <script>
+    document.getElementById("yes-button").addEventListener("click", startLoading);
+document.getElementById("of-course-button").addEventListener("click", startLoading);
+
+function startLoading() {
+    document.getElementById("intro-screen").style.display = "none";  // Прячем начальный экран
+    document.getElementById("loading-screen").style.display = "block";  // Показываем экран загрузки
+    
+    // Симулируем загрузку
+    setTimeout(function() {
+        document.getElementById("loading-screen").style.display = "none";  // Прячем экран загрузки
+        document.getElementById("main-content").style.display = "block";  // Показываем основной контент
+    }, 1000);  // Задержка 3 секунды
+}
+
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const bgCanvas   = document.getElementById('bgCanvas');
+      const drawCanvas = document.getElementById('drawCanvas');
+      const bgCtx      = bgCanvas.getContext('2d');
+      const drawCtx    = drawCanvas.getContext('2d');
+      const photoUpload = document.getElementById('photoUpload');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const clearDrawingBtn = document.getElementById('clearDrawingBtn');
+      const shareBtn = document.getElementById('shareBtn');
+      let userPhoto = null;
+      const BRUSH_SIZE = 3;
+      const BRUSH_COLOR = '#302c79'; // Blue color
+      let isDrawing = false;
+
+      const baseImage = new Image();
+      baseImage.src = 'https://retardlicence.fun/img/forsite.png'; // Replace with your actual frame image
+      baseImage.onload = redrawBackground;
+
+      photoUpload.addEventListener('change', e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+          userPhoto = new Image();
+          userPhoto.onload = redrawBackground;
+          userPhoto.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+      });
+
+      function redrawBackground() {
+        bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+        if (userPhoto) {
+          const photoX = 10, photoY = 0;
+          const photoW = 295, photoH = bgCanvas.height;
+          const scale = Math.max(photoW / userPhoto.width, photoH / userPhoto.height);
+          const w = userPhoto.width * scale;
+          const h = userPhoto.height * scale;
+          const x = photoX + (photoW - w) / 2;
+          const y = photoY + (photoH - h) / 2;
+          bgCtx.save();
+          bgCtx.beginPath();
+          bgCtx.rect(photoX, photoY, photoW, photoH);
+          bgCtx.clip();
+          bgCtx.drawImage(userPhoto, x, y, w, h);
+          bgCtx.restore();
+        }
+        bgCtx.drawImage(baseImage, 0, 0, bgCanvas.width, bgCanvas.height);
+      }
+
+      drawCanvas.addEventListener('mousedown', e => {
+        isDrawing = true;
+        const { x, y } = getMousePos(e);
+        drawCtx.beginPath();
+        drawCtx.moveTo(x, y);
+      });
+      drawCanvas.addEventListener('mousemove', e => {
+        if (!isDrawing) return;
+        const { x, y } = getMousePos(e);
+        drawCtx.lineTo(x, y);
+        drawCtx.strokeStyle = BRUSH_COLOR;
+        drawCtx.lineWidth = BRUSH_SIZE;
+        drawCtx.lineCap = 'round';
+        drawCtx.stroke();
+      });
+      ['mouseup', 'mouseout'].forEach(evt =>
+        drawCanvas.addEventListener(evt, () => { isDrawing = false; })
+      );
+
+      function getMousePos(e) {
+        const rect = drawCanvas.getBoundingClientRect();
+        const scaleX = drawCanvas.width / rect.width;
+        const scaleY = drawCanvas.height / rect.height;
+        return {
+          x: (e.clientX - rect.left) * scaleX,
+          y: (e.clientY - rect.top) * scaleY
+        };
+      }
+
+      downloadBtn.addEventListener('click', () => {
+        const tmp = document.createElement('canvas');
+        tmp.width = bgCanvas.width;
+        tmp.height = bgCanvas.height;
+        const tctx = tmp.getContext('2d');
+        tctx.drawImage(bgCanvas, 0, 0);
+        tctx.drawImage(drawCanvas, 0, 0);
+        const link = document.createElement('a');
+        link.download = 'card.png';
+        link.href = tmp.toDataURL('image/png');
+        link.click();
+      });
+
+      clearDrawingBtn.addEventListener('click', () => {
+        drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+      });
+
+      shareBtn.addEventListener('click', () => {
+        const url = `https://x.com/share?text=i%20just%20got%20my%20licence%20-%20%24RTRDLICNC`;
+        const width = 500;
+        const height = 400;
+        const left = (window.innerWidth / 2) - (width / 2);
+        const top = (window.innerHeight / 2) - (height / 2);
+        window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
+      });
+
+      if (baseImage.complete) redrawBackground();
+    });
+  </script>
+
+
+</body></html>
